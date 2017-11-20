@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.arturmusayelyan.jsonexample1.MainActivity">
+
+    <Button
+        android:id="@+id/get_json_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get json"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:onClick="onClick"
+        />
+    <Button
+        android:id="@+id/parse_json_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="parse json"
+        android:layout_below="@id/get_json_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:onClick="onClick"/>
+    <TextView
+        android:id="@+id/json_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@id/parse_json_btn"
+        />
+
+</RelativeLayout>
