@@ -27,12 +27,12 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 0;
+        return this.expandableList.get(this.expandableList.get(groupPosition).getChildrensProductList().size());
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return null;
+        return this.expandableList.get(groupPosition);
     }
 
     @Override
