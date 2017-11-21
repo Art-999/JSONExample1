@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,25 +21,30 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_Json;
     private String stringFromJSON;
     private String valueFromRequest;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv_Json = findViewById(R.id.json_tv);
+        progressBar = findViewById(R.id.progressBar);
     }
 
     public void onClick(View view) {
         if (view.getId() == R.id.get_json_btn) {
             new BackgroundTask().execute();
         } else if (view.getId() == R.id.parse_json_btn) {
-            if(valueFromRequest==null){
-                Toast.makeText(this,"first get JSON ",Toast.LENGTH_SHORT).show();
-            }
-            else {
+            if (valueFromRequest == null) {
+                Toast.makeText(this, "first get JSON ", Toast.LENGTH_SHORT).show();
+            } else {
+                String local=null;
                 Intent intent = new Intent(this, DisplayParsedJSON.class);
-                intent.putExtra("json_data",valueFromRequest);
+                intent.putExtra("json_data", valueFromRequest);
                 startActivity(intent);
+
+                tv_Json.setText("");
+                valueFromRequest=local;
             }
         }
     }
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             json_url = "https://freemegalist.com/api.php/?action=categories";
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -78,8 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            progressBar.setVisibility(View.GONE);
             tv_Json.setText(result);
-            valueFromRequest=result;
+            valueFromRequest = result;
         }
     }
 }

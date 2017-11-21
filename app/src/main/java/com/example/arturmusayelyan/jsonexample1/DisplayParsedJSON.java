@@ -20,6 +20,7 @@ public class DisplayParsedJSON extends AppCompatActivity {
     private ExpandableListView expandableListView;
     private List<String> expandableListTitle;
     private HashMap<String, List<String>> expandableListDetail;
+    private CustomExpandableListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,9 @@ public class DisplayParsedJSON extends AppCompatActivity {
             e.printStackTrace();
         }
         Log.d("ART", productList.toString());
+
+        adapter = new CustomExpandableListAdapter(this, productList);
+        expandableListView.setAdapter(adapter);
     }
 
 
