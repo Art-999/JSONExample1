@@ -36,12 +36,12 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getGroup(int groupPosition) {
-        return this.expandableList.get(groupPosition).getName();
+        return this.expandableList.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {  //?
-        return this.expandableList.get(groupPosition).getChildrensProductList().get(childPosition).getName();
+        return this.expandableList.get(groupPosition).getChildrensProductList().get(childPosition);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String groupTitle = (String) getGroup(groupPosition);
+        String groupTitle = ((Product) getGroup(groupPosition)).getName();
         if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             convertView = layoutInflater.inflate(R.layout.list_group, null);
@@ -74,7 +74,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String childItemText = (String) getChild(groupPosition, childPosition);
+        final String childItemText = ((ChildrensProduct) getChild(groupPosition, childPosition)).getName();
         if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             convertView = layoutInflater.inflate(R.layout.list_item, null);
